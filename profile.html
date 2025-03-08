@@ -1,0 +1,26 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Update</title>
+  <link rel="stylesheet" href="src/style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h2>Profile Update</h2>
+    <form id="updateForm">
+      <input type="text" id="editFirstName" placeholder="First Name" required>
+      <input type="text" id="editLastName" placeholder="Last Name" required>
+      <input type="email" id="editEmail" placeholder="Email" required>
+      <input type="date" id="editBirthDate" required>
+      <input type="password" id="editPassword" placeholder="New Password">
+      <button type="submit">Update</button>
+    </form>
+    <p id="updateError" class="error"></p>
+  </div>
+  <script src="src/main.js"></script>
+</body>
+
+</html>
