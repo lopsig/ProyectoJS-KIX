@@ -1,0 +1,38 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link rel="stylesheet" href="src/styleRegProf.css">
+</head>
+
+<body>
+  <div class="container">
+    <h2>Register</h2>
+    <form id="registerForm">
+      <input type="text" id="firstName" placeholder="Nombre" required autocomplete="off">
+      <input type="text" id="lastName" placeholder="Apellido" required autocomplete="off">
+      <input type="email" id="email" placeholder="Correo" required autocomplete="off">
+      <input type="date" id="birthDate" required min="1905-01-01" max="2007-12-31">
+      <input type="text" id="userName" placeholder="Usuario" required autocomplete="off">
+      <input type="password" id="password" placeholder="Contraseña" required autocomplete="off">
+      <input type="password" id="confirmPassword" placeholder="Confirmar Contraseña" required autocomplete="off">
+      <button type="submit">Register</button>
+    </form>
+    <p id="error" class="error"></p>
+    <ul class="validation-list">
+      <li id="length">Contraseña debe tener al menos 6 caracteres</li>
+      <li id="letter">Contraseña debe tener letras</li>
+      <li id="number">Contraseña debe tener al menos un número</li>
+      <li id="special">Contraseña debe tener al menos un carácter especial (!@#$%^&*.)</li>
+    </ul>
+
+
+
+
+  </div>
+  <script type="module" src="src/register.js"></script>
+</body>
+
+</html>

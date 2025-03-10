@@ -31,4 +31,16 @@ button:hover {
 }
 .error {
     color: red;
+    font-size: 12px;
 }
+
+.validation-list{
+  font-size: 12px;
+  list-style: none;
+  color: red;
+}
+
+.valid {
+    color: green;
+    font-weight: bold;
+  }
