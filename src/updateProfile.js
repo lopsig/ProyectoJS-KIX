@@ -46,6 +46,7 @@ document
       error.style.color = "green";
 
       // CAMBIAR DATOS
+      
       userMaster.firstName = fistName;
       userMaster.lastName = lastName;
       userMaster.birthDate = birthDate;

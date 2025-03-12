@@ -40,6 +40,7 @@ document
       error.style.color = "green";
 
       //GUARDAR USUARIOS
+
       const register = () => {
         let newUser = new User(
           fistName,
@@ -49,15 +50,16 @@ document
           userName,
           password
         );
-        users = [...users, newUser];
         console.log(newUser);
+        users = [...users, newUser];
+        console.log(users);
+        localStorage.setItem("usersList", JSON.stringify(users));
       };
-      register();
-      console.log(users);
 
+      register();
 
       // window.location.href = "home_prueba.html";
-
+      console.log("Redireccionar a HOME")
     }
 
     if (fistName.length < 3) {
@@ -111,4 +113,3 @@ passwordInput.addEventListener("input", function () {
     special.classList.remove("valid");
   }
 });
-
