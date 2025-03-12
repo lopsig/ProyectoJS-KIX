@@ -1,22 +1,32 @@
-import { User } from "./User";
+//Usuario en sesion actual
+let userActual = JSON.parse(localStorage.getItem("userActual"));
+console.log(userActual);
 
-let userMaster = new User(
-  "Jonathan",
-  "López",
-  "lsjleo12@gmail.com",
-  "11-22-1993",
-  "leo12",
-  "leo.1122"
+//Datos Actuales del Usuario
+document.getElementById(
+  "editFirstName"
+).placeholder = `Nombre Actual: ${userActual.firstName}`;
+document.getElementById(
+  "editLastName"
+).placeholder = `Apellido Actual: ${userActual.lastName}`;
+
+//Todos los usuarios registrados
+let allUsers = JSON.parse(localStorage.getItem("usersList"));
+console.log(allUsers);
+
+// Email de sesion actual
+let emailUserActual = userActual.email;
+console.log(emailUserActual);
+console.log(userActual.firstName);
+
+//Datos de usuario actual en la lista de registrados
+let userInLocalStorage = allUsers.find(
+  (user) => user.email === emailUserActual
 );
-
-console.log(userMaster);
-let users = [userMaster];
-console.log("********************************");
-
-// console.log(userMaster.firstName);
-// userMaster.firstName = "Leonardo";
-// console.log(userMaster);
-// console.log(userMaster.firstName);
+console.log(userInLocalStorage);
+// console.log(userInLocalStorage.firstName);
+// userInLocalStorage.firstName = "Jonathan"
+// console.log(userInLocalStorage.firstName);
 
 //Validaciones y redireccion a "HOME"
 document
@@ -24,7 +34,7 @@ document
   .addEventListener("submit", function (event) {
     event.preventDefault();
 
-    let fistName = document.getElementById("editFirstName").value;
+    let firstName = document.getElementById("editFirstName").value;
     let lastName = document.getElementById("editLastName").value;
     // let email = document.getElementById("editEmail").value;
     let birthDate = document.getElementById("editBirthDate").value;
@@ -40,24 +50,24 @@ document
       error.style.color = "red";
     } else if (password.length < 6) {
       error.textContent = "Contraseña Inválida";
-    }
-    else if (password === confirmPassword) {
+    } else if (password === confirmPassword) {
       error.textContent = "Las contraseñas coinciden";
       error.style.color = "green";
-
-      // CAMBIAR DATOS
-      
-      userMaster.firstName = fistName;
-      userMaster.lastName = lastName;
-      userMaster.birthDate = birthDate;
-      userMaster.password = password;
-
-      console.log(users);
-
-      // window.location.href = "home_prueba.html";
+      window.location.href = "home_prueba.html";
     }
 
-    if (fistName.length < 3) {
+    if (userInLocalStorage && userInLocalStorage.email === emailUserActual) {
+      // CAMBIAR DATOS
+
+      userInLocalStorage.firstName = firstName;
+      userInLocalStorage.lastName = lastName;
+      userInLocalStorage.birthDate = birthDate;
+      userInLocalStorage.password = password;
+
+      localStorage.setItem("usersList", JSON.stringify(allUsers));
+    }
+
+    if (firstName.length < 3) {
       error.textContent =
         "Nombre y apellido deben tener por lo menos 2 caracteres";
       error.style.color = "red";
@@ -68,6 +78,15 @@ document
         "Nombre y apellido deben tener por lo menos 2 caracteres";
       error.style.color = "red";
     }
+
+    // Actualizar userActual
+    userActual.firstName = firstName;
+    userActual.lastName = lastName;
+    userActual.birthDate = birthDate;
+    userActual.password = password;
+
+    // Guardar userActual actualizado en el Local Storage
+    localStorage.setItem("userActual", JSON.stringify(userActual));
   });
 
 //Alertas para validación de contraseña

@@ -3,14 +3,17 @@ import { User } from "./User";
 const userMaster = new User(
   "Jonathan",
   "López",
-  "lsjleo12@gmail.com",
+  "jona@correo.com",
   "11-22-1993",
-  "leo12",
-  "leo.1122"
+  "jona12",
+  "jona.1122"
 );
 
+
+
 console.log(userMaster);
-let users = [userMaster];
+let users = JSON.parse(localStorage.getItem("usersList")) || [userMaster];
+// let users = [userMaster];
 console.log("********************************");
 
 //Validaciones y redireccion a "HOME"
@@ -58,7 +61,7 @@ document
 
       register();
 
-      // window.location.href = "home_prueba.html";
+      window.location.href = "home_prueba.html";
       console.log("Redireccionar a HOME")
     }
 

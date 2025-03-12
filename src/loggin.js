@@ -1,23 +1,7 @@
 const users = JSON.parse(localStorage.getItem("usersList"));
 console.log(users);
 
-// const user = users.find((user) => user.email === "lsjleo12@gmail.com");
-// console.log(user);
 
-// const password = users.find((user) => user.password === "leo.95");
-// console.log(password);
-
-// if (
-//   user &&
-//   user.email === "lsjleo12@gmail.com" &&
-//   user.password === "leo.1122"
-// ) {
-//   console.log("Esta correcto");
-// } else {
-//   console.log("NO ESTA BIEN");
-// }
-
-///////////////////////////////////////////////
 document
   .getElementById("loginForm")
   .addEventListener("submit", function (event) {
@@ -31,7 +15,7 @@ document
     const users = JSON.parse(localStorage.getItem("usersList"));
     console.log(users);
 
-    //
+    //Llamar al objeto
     const user = users.find((user) => user.email === email);
     console.log(user);
 
