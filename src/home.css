@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500;800&display=swap');
 
 :root {
   --primary-color: #5ea680;
@@ -158,12 +157,13 @@ header {
 }
 
 .header__image {
+
   height: 80%;
   background-image: url("/assets/experience.png");
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: 100rem;
+  min-height: 10rem;
 }
 
 .header__content {
@@ -301,7 +301,7 @@ header .btn {
   height: 100%;
   background-image: url("/assets/experience.png");
   background-position: center top;
-  background-size: cover;
+  background-size:cover;
   background-repeat: no-repeat;
   min-height: 15rem;
 }
