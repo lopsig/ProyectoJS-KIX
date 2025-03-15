@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 
 :root {
-  --primary-color: #5ea680;
+  --primary-color: #519671;
   --text-dark: #1d1f1e;
   --text-light: #e08e12;
   --extra-light: #335fb7;
-  --white: #ffff;
+  --white: #ffffff;
   --max-width: 1200px;
 }
 
