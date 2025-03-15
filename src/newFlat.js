@@ -3,26 +3,17 @@ import { Flat } from "./Flat";
 const flatMaster = new Flat(
   "Quito",
   "Calle N",
-  "395",
-  "100",
-  "1995",
-  "30",
-  "03-11-2025",
+  395,
+  100,
+  1995,
+  30,
+  "2025-11-03",
   "true",
+  true,
 );
 
-const flatAdmin = new Flat(
-  "Biblian",
-  "Calle J",
-  "12",
-  "120",
-  "1993",
-  "32",
-  "11-22-2025",
-  "false"
-);
 
-let flats = [flatMaster, flatAdmin];
+let flats = JSON.parse	(localStorage.getItem("flatsList")) || [flatMaster];
 console.log(flats);
 console.log("********************************");
 
@@ -40,6 +31,7 @@ document
     let rentPrice = document.getElementById("rentPrice").value;
     let dateAvailable = document.getElementById("dateAvailable").value;
     let hasAC = document.querySelector('input[name="hasAC"]:checked').value;
+    
     // let no = document.getElementById("no").value;
     
     let error = document.getElementById("error");
@@ -55,13 +47,13 @@ document
         let newFlat = new Flat(
           city,
           streetName,
-          streetNumber,
-          areaSize,
-          yearBuilt,
-          rentPrice,
+          parseFloat(streetNumber),
+          parseFloat(areaSize), // Convertir a número
+          parseFloat(yearBuilt), // Convertir a número
+          parseFloat(rentPrice), // Convertir a número
           dateAvailable,
           hasAC,
-          // no
+          true
         );
 
         console.log(newFlat);
@@ -72,7 +64,7 @@ document
 
       newFlat();
 
-      // window.location.href = "home_prueba.html";
+      window.location.href = "allFlats.html";
       console.log("Redireccionar a ALL FLATS");
     }
   });

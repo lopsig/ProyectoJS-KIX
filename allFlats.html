@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Flats</title>
+  <link rel="stylesheet" href="src/allFlats.css">
+</head>
+
+<body>
+  <h1>All Flats</h1>
+
+  <nav>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+    </ul>
+  </nav>
+
+  <!-- Filtros -->
+  <div class="filters">
+    <label for="city">Ciudad:</label>
+    <input type="text" id="city" placeholder="Filtrar por ciudad">
+
+    <label for="price-range">Precio:</label>
+    <input type="number" id="min-price" placeholder="Mínimo">
+    <input type="number" id="max-price" placeholder="Máximo">
+
+    <label for="area-range">Área:</label>
+    <input type="number" id="min-area" placeholder="Mínimo">
+    <input type="number" id="max-area" placeholder="Máximo">
+
+    <button id="filter-button">Filtrar</button>
+  </div>
+
+  <!-- Botones de ordenamiento -->
+  <div class="sort-options">
+    <button id="sort-city">Ordenar por Ciudad</button>
+    <button id="sort-price">Ordenar por Precio</button>
+    <button id="sort-area">Ordenar por Tamaño</button>
+  </div>
+
+  <!-- Tabla de flats -->
+  <table id="flats-table">
+    <thead>
+      <tr>
+        <th>Ciudad</th>
+        <th>Calle</th>
+        <th>Número de Calle</th>
+        <th>Área [m²]</th>
+        <th>Año de construcción</th>
+        <th>Precio de alquiler</th>
+        <th>Fecha disponible</th>
+        <th>Tiene AC</th>
+        <th>Favorito</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Los datos se cargarán dinámicamente con JavaScript -->
+    </tbody>
+  </table>
+
+  <script src="src/allFlats.js"></script>
+</body>
+
+</html>

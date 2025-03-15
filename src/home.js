@@ -1,67 +1,67 @@
-const menuBtn = document.getElementById("menu-btn");
-const navLinks = document.getElementById("nav-links");
-const menuBtnIcon = menuBtn.querySelector("i");
+// home.js
 
-menuBtn.addEventListener("click", (e) => {
-  navLinks.classList.toggle("open");
+// Cargar flats desde el localStorage
+let flats = JSON.parse(localStorage.getItem("flatsList")) || [];
 
-  const isOpen = navLinks.classList.contains("open");
-  menuBtnIcon.setAttribute(
-    "class",
-    isOpen ? "ri-close-line" : "ri-menu-3-line"
-  );
+// Cargar el nombre del usuario desde el localStorage
+let user = JSON.parse(localStorage.getItem("userActual"));
+document.getElementById(
+  "user-greeting"
+).textContent = `Hola, ${user.firstName} ${user.lastName}`;
+
+// Función para renderizar la tabla de favoritos
+function renderFavoritesTable() {
+  const tbody = document.querySelector("#favorites-table tbody");
+  tbody.innerHTML = ""; // Limpiar la tabla
+
+  // Filtrar flats favoritos
+  const favorites = flats.filter((flat) => flat.favourite);
+
+  favorites.forEach((flat) => {
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+      <td>${flat.city}</td>
+      <td>${flat.streetName}</td>
+      <td>${flat.streetNumber}</td>
+      <td>${flat.areaSize}</td>
+      <td>${flat.yearBuilt}</td>
+      <td>$${flat.rentPrice}</td>
+      <td>${flat.dateAvailable}</td>
+      <td>${flat.hasAC ? "Sí" : "No"}</td>
+      <td>
+        <button class="remove-btn" data-id="${flat.city}-${
+      flat.streetName
+    }">Remove</button>
+      </td>
+    `;
+
+    tbody.appendChild(row);
+  });
+
+  // Agregar eventos a los botones de "Remove"
+  document.querySelectorAll(".remove-btn").forEach((button) => {
+    button.addEventListener("click", removeFavorite);
+  });
+}
+
+// Función para eliminar un flat de favoritos
+function removeFavorite(event) {
+  const id = event.target.getAttribute("data-id");
+  const flat = flats.find((f) => `${f.city}-${f.streetName}` === id);
+
+  if (flat) {
+    flat.favourite = false; // Marcar como no favorito
+    localStorage.setItem("flatsList", JSON.stringify(flats)); // Guardar cambios en localStorage
+    renderFavoritesTable(); // Volver a renderizar la tabla
+  }
+}
+
+// Evento para el botón de "Log out"
+document.getElementById("logout-button").addEventListener("click", () => {
+  localStorage.removeItem("userActual"); // Eliminar el usuario de la sesión
+  window.location.href = "loggin.html"; // Redirigir a la página de login
 });
 
-navLinks.addEventListener("click", (e) => {
-  navLinks.classList.remove("open");
-  menuBtnIcon.setAttribute("class", "ri-menu-3-line");
-});
-
-const scrollRevealOption = {
-  distance: "50px",
-  origin: "bottom",
-  duration: 1000,
-};
-
-ScrollReveal().reveal(".header__content h1", {
-  ...scrollRevealOption,
-});
-ScrollReveal().reveal("header form", {
-  ...scrollRevealOption,
-  delay: 500,
-});
-
-ScrollReveal().reveal(".service__card", {
-  ...scrollRevealOption,
-  interval: 500,
-});
-
-ScrollReveal().reveal(".experience__content .section__header", {
-  ...scrollRevealOption,
-});
-ScrollReveal().reveal(".experience__content p", {
-  ...scrollRevealOption,
-  delay: 500,
-});
-ScrollReveal().reveal(".experience__btn", {
-  ...scrollRevealOption,
-  delay: 1000,
-});
-ScrollReveal().reveal(".experience__stats", {
-  ...scrollRevealOption,
-  delay: 1500,
-});
-
-const swiper = new Swiper(".swiper", {
-  slidesPerView: 2,
-  spaceBetween: 20,
-  loop: true,
-});
-
-ScrollReveal().reveal(".subscribe .section__header", {
-  ...scrollRevealOption,
-});
-ScrollReveal().reveal(".subscribe form", {
-  ...scrollRevealOption,
-  delay: 500,
-});
+// Renderizar la tabla inicial
+renderFavoritesTable();

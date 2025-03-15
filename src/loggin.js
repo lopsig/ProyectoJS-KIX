@@ -20,7 +20,7 @@ document
     console.log(user);
 
     if (user && user.email === email && user.password === password) {
-      window.location.href = "home_prueba.html";
+      window.location.href = "home.html";
       localStorage.setItem("userActual", JSON.stringify(user));
       
     } else {

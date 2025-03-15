@@ -7,6 +7,7 @@ export class Flat {
   rentPrice; //number
   dateAvailable; //date
   hasAC; // boolean
+  favourite; //boolean
 
   constructor(
     city,
@@ -16,7 +17,8 @@ export class Flat {
     yearBuilt,
     rentPrice,
     dateAvailable,
-    hasAC
+    hasAC,
+    favourite
   ) {
     this.city = city;
     this.streetName = streetName;
@@ -25,7 +27,8 @@ export class Flat {
     this.yearBuilt = yearBuilt;
     this.rentPrice = rentPrice;
     this.dateAvailable = dateAvailable;
-    this.hasAC = hasAC
+    this.hasAC = hasAC;
+    this.favourite = favourite
   }
 
   //GETTER
@@ -52,6 +55,10 @@ export class Flat {
   }
   get hasAC() {
     return this.hasAC;
+  }
+
+  get favourite(){
+    return this.favourite
   }
 
   
@@ -90,6 +97,10 @@ export class Flat {
   }
   set hasAC(newHasAC) {
     this.hasAC = newHasAC;
+  }
+
+  set favourite(newFavourite) {
+    this.favourite = newFavourite
   }
 
 }

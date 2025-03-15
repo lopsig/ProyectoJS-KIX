@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="src/home.css">
+</head>
+
+<body>
+  <!-- Encabezado -->
+  <header>
+    <div class="logo">
+      <span id="app-name"> RentEase</span>
+      <img src="logo.png" alt="Logo de la compañía">
+    </div>
+    <div class="user-info">
+      <span id="user-greeting">Hello, [Nombre del usuario]</span>
+      <button id="logout-button">Log out</button>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="allFlats.html">All Flats</a></li>
+        <li><a href="newFlat.html">New Flat</a></li>
+        <li><a href="updateProfile.html">Update Profile</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Tabla de flats favoritos -->
+  <h1>Flats Favoritos</h1>
+  <table id="favorites-table">
+    <thead>
+      <tr>
+        <th>Ciudad</th>
+        <th>Calle</th>
+        <th>Número de calle</th>
+        <th>Área [m²]</th>
+        <th>Año de construcción</th>
+        <th>Precio de alquiler</th>
+        <th>Fecha disponible</th>
+        <th>Tiene AC</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Los datos se cargarán dinámicamente con JavaScript -->
+    </tbody>
+  </table>
+
+  <script src="src/home.js"></script>
+
+
+
+</body>
+
+</html>
+

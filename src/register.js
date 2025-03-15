@@ -61,7 +61,7 @@ document
 
       register();
 
-      window.location.href = "home_prueba.html";
+      window.location.href = "index.html";
       console.log("Redireccionar a HOME")
     }
 
