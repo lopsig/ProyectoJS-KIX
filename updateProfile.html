@@ -4,16 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile Update</title>
-  <link rel="stylesheet" href="src/styleRegProf.css">
+  <link rel="stylesheet" href="src/updateProfile.css">
 </head>
 
 <body>
+
+  <header>
+    <div class="logo">
+      <span id="app-name"> RentEase</span>
+      <img src="assets/logo.png" alt="Logo de la compañía">
+    </div>
+    <div class="user-info">
+      <!-- <span id="user-greeting">Hello, </span> -->
+      <button id="logout-button">Log out</button>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+
+      </ul>
+    </nav>
+  </header>
+
+
+
+
   <div class="container">
     <h2>Profile Update</h2>
     <form id="updateForm">
       <input type="text" id="editFirstName" placeholder="" required autocomplete="off">
       <input type="text" id="editLastName" placeholder="Last Name" required autocomplete="off">
-      <input type="date" id="editBirthDate" required>
+      <input type="date" id="editBirthDate" required min="1905-01-01" max="2007-12-31">
       <input type="password" id="password" placeholder="Nueva Contraseña" autocomplete="off">
       <input type="password" id="confirmPassword" placeholder="Confirmar Nueva Contraseña" required autocomplete="off">
       <button type="submit">Update</button>

@@ -13,7 +13,6 @@ body {
 }
 
 
-
 /* Encabezado fijo */
 header {
   position: fixed;
@@ -46,58 +45,14 @@ header #app-name {
   color: #3498db; /* Azul claro */
 }
 
-header .user-info {
-  display: flex;
-  align-items: center;
-}
-
-header #logout-button {
-  background-color: #e74c3c; /* Rojo para el botón de logout */
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-header #logout-button:hover {
-  background-color: #c0392b; /* Rojo oscuro al pasar el mouse */
-}
-
-header nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap; /* Permite que los enlaces se ajusten en pantallas pequeñas */
-}
-
-header nav ul li {
-  margin-left: 20px;
-}
-
-header nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-header nav ul li a:hover {
-  background-color: #3498db; /* Azul claro al pasar el mouse */
-}
-
-/* Contenedor de login */
-.login-container {
+/* Contenedor principal */
+.container {
   background-color: white;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   margin: 20px;
 }
 
@@ -110,80 +65,79 @@ h2 {
 }
 
 /* Formulario */
-#loginForm {
+#registerForm {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.input-group {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.input-group label {
-  font-size: 16px;
-  color: #2c3e50; /* Azul marino */
-}
-
-.input-group input {
+#registerForm input,
+#registerForm button {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
 }
 
-.input-group input:focus {
+#registerForm input:focus {
   border-color: #3498db; /* Azul claro */
   outline: none;
 }
 
-#loginForm button {
+#registerForm button {
   background-color: #3498db; /* Azul claro */
   color: white;
   border: none;
-  padding: 10px;
-  border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s;
 }
 
-#loginForm button:hover {
+#registerForm button:hover {
   background-color: #2980b9; /* Azul más oscuro al pasar el mouse */
 }
 
-/* Botón de registro */
-#registerBtn {
-  background-color: #2ecc71; /* Verde */
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  width: 100%;
-  margin-top: 10px;
-  transition: background-color 0.3s;
-}
-
-#registerBtn:hover {
-  background-color: #27ae60; /* Verde oscuro al pasar el mouse */
-}
-
 /* Mensaje de error */
-.error-message {
+.error {
   text-align: center;
   margin-top: 15px;
   font-size: 14px;
   color: #e74c3c; /* Rojo para mensajes de error */
 }
 
+/* Lista de validación de contraseña */
+.validation-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+.validation-list li {
+  font-size: 14px;
+  color: #2c3e50; /* Azul marino */
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.validation-list li::before {
+  content: "•";
+  margin-right: 10px;
+  color: #3498db; /* Azul claro */
+}
+
+.validation-list li.valid {
+  color: #2ecc71; /* Verde para ítems válidos */
+}
+
+.validation-list li.valid::before {
+  color: #2ecc71; /* Verde para ítems válidos */
+}
+
 /* Estilos responsivos */
 @media (max-width: 768px) {
   /* Ajustes para tablets y móviles */
-  .login-container {
+  .container {
     margin: 10px;
     padding: 15px;
   }
@@ -192,21 +146,24 @@ h2 {
     font-size: 22px;
   }
 
-  .input-group input,
-  #loginForm button,
-  #registerBtn {
+  #registerForm input,
+  #registerForm button {
     font-size: 14px;
     padding: 8px;
   }
 
-  .error-message {
+  .validation-list li {
+    font-size: 12px;
+  }
+
+  .error {
     font-size: 12px;
   }
 }
 
 @media (max-width: 480px) {
   /* Ajustes para móviles pequeños */
-  .login-container {
+  .container {
     margin: 5px;
     padding: 10px;
   }
@@ -215,20 +172,34 @@ h2 {
     font-size: 20px;
   }
 
-  .input-group input,
-  #loginForm button,
-  #registerBtn {
+  #registerForm input,
+  #registerForm button {
     font-size: 12px;
     padding: 6px;
   }
 
-  .error-message {
+  .validation-list li {
+    font-size: 10px;
+  }
+
+  .error {
     font-size: 10px;
   }
 }
 
-    .error{
-      color: red;
-      font-size: 14px;
-      margin-top: 10px;
-    }
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+.validation-list{
+  font-size: 12px;
+  list-style: none;
+  color: red;
+}
+
+.valid {
+    color: green;
+    font-weight: bold;
+  }

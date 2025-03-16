@@ -13,15 +13,15 @@
   <header>
     <div class="logo">
       <span id="app-name"> RentEase</span>
-      <img src="logo.png" alt="Logo de la compañía">
+      <img src="assets/logo.png" alt="Logo de la compañía">
     </div>
     <div class="user-info">
-      <span id="user-greeting">Hello, [Nombre del usuario]</span>
+      <span id="user-greeting">Hello, </span>
       <button id="logout-button">Log out</button>
     </div>
     <nav>
       <ul>
-        <li><a href="home.html">Home</a></li>
+        <!-- <li><a href="home.html">Home</a></li> -->
         <li><a href="allFlats.html">All Flats</a></li>
         <li><a href="newFlat.html">New Flat</a></li>
         <li><a href="updateProfile.html">Update Profile</a></li>
@@ -43,12 +43,21 @@
         <th>Fecha disponible</th>
         <th>Tiene AC</th>
         <th>Acciones</th>
+        <th>Imágenes</th>
       </tr>
     </thead>
     <tbody>
       <!-- Los datos se cargarán dinámicamente con JavaScript -->
     </tbody>
   </table>
+
+  <!-- Modal para mostrar imágenes -->
+  <div id="image-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <div id="modal-images"></div>
+    </div>
+  </div>
 
   <script src="src/home.js"></script>
 

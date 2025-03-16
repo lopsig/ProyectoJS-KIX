@@ -9,13 +9,29 @@
 </head>
 
 <body>
+
+  <header>
+    <div class="logo">
+      <span id="app-name"> RentEase</span>
+      <img src="assets/logo.png" alt="Logo de la compañía">
+    </div>
+    <div class="user-info">
+      <span id="user-greeting">Hello, </span>
+      <button id="logout-button">Log out</button>
+    </div>
+    <nav>
+      <ul>
+        <!-- <li><a href="home.html">Home</a></li> -->
+        <li><a href="home.html">Home</a></li>
+        <!-- <li><a href="allFlats.html">All Flats</a></li> -->
+        <li><a href="newFlat.html">New Flat</a></li>
+        <li><a href="updateProfile.html">Update Profile</a></li>
+      </ul>
+    </nav>
+  </header>
+
   <h1>All Flats</h1>
 
-  <nav>
-    <ul>
-      <li><a href="home.html">Home</a></li>
-    </ul>
-  </nav>
 
   <!-- Filtros -->
   <div class="filters">
@@ -53,12 +69,23 @@
         <th>Fecha disponible</th>
         <th>Tiene AC</th>
         <th>Favorito</th>
+        <th>Imágenes</th>
       </tr>
     </thead>
     <tbody>
       <!-- Los datos se cargarán dinámicamente con JavaScript -->
     </tbody>
   </table>
+
+  <!-- Modal para mostrar imágenes -->
+  <div id="image-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <div id="modal-images"></div>
+    </div>
+  </div>
+
+
 
   <script src="src/allFlats.js"></script>
 </body>

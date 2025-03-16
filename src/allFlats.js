@@ -1,8 +1,13 @@
-
 let flats = JSON.parse(localStorage.getItem("flatsList")) || [];
 
+// Cargar el nombre del usuario desde el localStorage
+let user = JSON.parse(localStorage.getItem("userActual"));
+document.getElementById(
+  "user-greeting"
+).textContent = `Hola, ${user.firstName} ${user.lastName}`;
+
 // Función para renderizar la tabla
-function renderTable(data) {
+const renderTable = (data) => {
   const tbody = document.querySelector("#flats-table tbody");
   tbody.innerHTML = ""; // Limpiar la tabla
 
@@ -10,17 +15,26 @@ function renderTable(data) {
     const row = document.createElement("tr");
 
     row.innerHTML = `
-      <td>${flat.city}</td>
-      <td>${flat.streetName}</td>
-      <td>${flat.streetNumber}</td>
-      <td>${flat.areaSize}</td>
-      <td>${flat.yearBuilt}</td>
-      <td>$${flat.rentPrice}</td>
-      <td>${flat.dateAvailable}</td>
-      <td>${flat.hasAC ? "Sí" : "No"}</td>
+      <td>${flat._city}</td>
+      <td>${flat._streetName}</td>
+      <td>${flat._streetNumber}</td>
+      <td>${flat._areaSize}</td>
+      <td>${flat._yearBuilt}</td>
+      <td>$${flat._rentPrice}</td>
+      <td>${flat._dateAvailable}</td>
+      <td>${flat._hasAC ? "Sí" : "No"}</td>
       <td>
-        <button class="favorite-btn" data-id="${flat.city}-${flat.streetName}">
-          ${flat.favourite ? "⭐" : "✩"}
+        <button class="favorite-btn" data-id="${flat._city}-${
+      flat._streetName
+    }">
+          ${flat._favourite ? "⭐" : "✩"}
+        </button>
+      </td>
+      <td>
+        <button class="show-images-btn" data-id="${flat._city}-${
+      flat._streetName
+    }">
+          Mostrar Imágenes
         </button>
       </td>
     `;
@@ -32,35 +46,87 @@ function renderTable(data) {
   document.querySelectorAll(".favorite-btn").forEach((button) => {
     button.addEventListener("click", toggleFavorite);
   });
+
+  // Agregar eventos a los botones de "Mostrar Imágenes"
+  document.querySelectorAll(".show-images-btn").forEach((button) => {
+    button.addEventListener("click", showImages);
+  });
 }
 
 // Función para alternar favoritos
-function toggleFavorite(event) {
+const toggleFavorite = (event) => {
   const id = event.target.getAttribute("data-id");
-  const flat = flats.find((f) => `${f.city}-${f.streetName}` === id);
+  const flat = flats.find((f) => `${f._city}-${f._streetName}` === id);
 
-if (flat) {
-  flat.favourite = !flat.favourite; // Alternar estado
-  localStorage.setItem("flatsList", JSON.stringify(flats)); // Guardar cambios en localStorage
-  renderTable(flats); // Volver a renderizar la tabla
+  if (flat) {
+    flat._favourite = !flat._favourite; // Alternar estado
+    localStorage.setItem("flatsList", JSON.stringify(flats)); // Guardar cambios en localStorage
+    renderTable(flats); // Volver a renderizar la tabla
+  }
 }
+
+// Función para mostrar imágenes en el modal
+const showImages=(event) => {
+  const id = event.target.getAttribute("data-id");
+  const flat = flats.find((f) => `${f._city}-${f._streetName}` === id);
+
+  if (flat && flat._images && flat._images.length > 0) {
+    const modal = document.getElementById("image-modal");
+    const modalImages = document.getElementById("modal-images");
+
+    // Limpiar el contenido previo del modal
+    modalImages.innerHTML = "";
+
+    // Mostrar las imágenes en el modal
+    flat._images.forEach((image) => {
+      const img = document.createElement("img");
+      img.src = image;
+      img.alt = `Imagen de ${flat._city}, ${flat._streetName}`;
+      img.style.width = "100%"; // Ajustar el tamaño de la imagen
+      img.style.maxWidth = "200px"; // Limitar el ancho máximo
+      img.style.margin = "10px"; // Añadir margen
+      img.style.borderRadius = "8px"; // Bordes redondeados
+      modalImages.appendChild(img);
+    });
+
+    // Mostrar el modal
+    modal.style.display = "block";
+  } else {
+    alert("No hay imágenes para este departamento.");
+  }
 }
+
+// Cerrar el modal al hacer clic en la "X"
+document.querySelector(".close-modal").addEventListener("click", () => {
+  const modal = document.getElementById("image-modal");
+  modal.style.display = "none";
+});
+
+// Cerrar el modal al hacer clic fuera del contenido
+window.addEventListener("click", (event) => {
+  const modal = document.getElementById("image-modal");
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+});
 
 // Función para filtrar los flats
-function filterFlats() {
+const filterFlats=() =>{
   const city = document.getElementById("city").value.toLowerCase();
   const minPrice = parseFloat(document.getElementById("min-price").value) || 0;
-  const maxPrice = parseFloat(document.getElementById("max-price").value) || Infinity;
+  const maxPrice =
+    parseFloat(document.getElementById("max-price").value) || Infinity;
   const minArea = parseFloat(document.getElementById("min-area").value) || 0;
-  const maxArea = parseFloat(document.getElementById("max-area").value) || Infinity;
+  const maxArea =
+    parseFloat(document.getElementById("max-area").value) || Infinity;
 
   const filtered = flats.filter((flat) => {
     return (
-      flat.city.toLowerCase().includes(city) &&
-      flat.rentPrice >= minPrice &&
-      flat.rentPrice <= maxPrice &&
-      flat.area >= minArea &&
-      flat.area <= maxArea
+      flat._city.toLowerCase().includes(city) &&
+      flat._rentPrice >= minPrice &&
+      flat._rentPrice <= maxPrice &&
+      flat._areaSize >= minArea &&
+      flat._areaSize <= maxArea
     );
   });
 
@@ -68,20 +134,20 @@ function filterFlats() {
 }
 
 // Función para ordenar por ciudad
-function sortByCity() {
-  flats.sort((a, b) => a.city.localeCompare(b.city));
+const sortByCity = ()  => {
+  flats.sort((a, b) => a._city.localeCompare(b._city));
   renderTable(flats);
 }
 
 // Función para ordenar por precio
-function sortByPrice() {
-  flats.sort((a, b) => a.rentPrice - b.rentPrice);
+const sortByPrice=()=> {
+  flats.sort((a, b) => a._rentPrice - b._rentPrice);
   renderTable(flats);
 }
 
 // Función para ordenar por tamaño del área
-function sortByArea() {
-  flats.sort((a, b) => a.area - b.areaSize);
+const sortByArea= ()=> {
+  flats.sort((a, b) => a._areaSize - b._areaSize);
   renderTable(flats);
 }
 
@@ -95,3 +161,9 @@ document.getElementById("filter-button").addEventListener("click", filterFlats);
 
 // Renderizar la tabla inicial
 renderTable(flats);
+
+// Evento para el botón de "Log out"
+document.getElementById("logout-button").addEventListener("click", () => {
+  localStorage.removeItem("userActual"); // Eliminar el usuario de la sesión
+  window.location.href = "loggin.html"; // Redirigir a la página de login
+});

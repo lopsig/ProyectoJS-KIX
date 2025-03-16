@@ -1,14 +1,4 @@
 export class Flat {
-  city; //string
-  streetName; //string
-  streetNumber; //number
-  areaSize; //number
-  yearBuilt; //number
-  rentPrice; //number
-  dateAvailable; //date
-  hasAC; // boolean
-  favourite; //boolean
-
   constructor(
     city,
     streetName,
@@ -18,91 +8,82 @@ export class Flat {
     rentPrice,
     dateAvailable,
     hasAC,
-    favourite
+    favourite,
+    images = []
   ) {
-    this.city = city;
-    this.streetName = streetName;
-    this.streetNumber = streetNumber;
-    this.areaSize = areaSize;
-    this.yearBuilt = yearBuilt;
-    this.rentPrice = rentPrice;
-    this.dateAvailable = dateAvailable;
-    this.hasAC = hasAC;
-    this.favourite = favourite
+    this._city = city;
+    this._streetName = streetName;
+    this._streetNumber = streetNumber;
+    this._areaSize = areaSize;
+    this._yearBuilt = yearBuilt;
+    this._rentPrice = rentPrice;
+    this._dateAvailable = dateAvailable;
+    this._hasAC = hasAC;
+    this._favourite = favourite;
+    this._images = images;
   }
 
-  //GETTER
+  // GETTERS
   get city() {
-    return this.city;
+    return this._city;
   }
   get streetName() {
-    return this.streetName;
+    return this._streetName;
   }
   get streetNumber() {
-    return this.streetNumber;
+    return this._streetNumber;
   }
   get areaSize() {
-    return this.areaSize;
+    return this._areaSize;
   }
   get yearBuilt() {
-    return this.yearBuilt;
+    return this._yearBuilt;
   }
   get rentPrice() {
-    return this.rentPrice;
+    return this._rentPrice;
   }
   get dateAvailable() {
-    return this.dateAvailable;
+    return this._dateAvailable;
   }
   get hasAC() {
-    return this.hasAC;
+    return this._hasAC;
+  }
+  get favourite() {
+    return this._favourite;
+  }
+  get images() {
+    return this._images;
   }
 
-  get favourite(){
-    return this.favourite
-  }
-
-  
-
-
-
-
-
-  //SETTER
+  // SETTERS
   set city(newCity) {
-    this.city = newCity;
+    this._city = newCity;
   }
   set streetName(newStreetName) {
-    this.streetName = newStreetName;
+    this._streetName = newStreetName;
   }
-
   set streetNumber(newStreetNumber) {
-    this.streetNumber = newStreetNumber;
+    this._streetNumber = newStreetNumber;
   }
-
   set areaSize(newAreaSize) {
-    this.areaSize = newAreaSize;
+    this._areaSize = newAreaSize;
   }
-
-  
   set yearBuilt(newYearBuilt) {
-    this.yearBuilt = newYearBuilt;
+    this._yearBuilt = newYearBuilt;
   }
-  
   set rentPrice(newRentPrice) {
-    this.rentPrice = newRentPrice;
+    this._rentPrice = newRentPrice;
   }
-  
   set dateAvailable(newDateAvailable) {
-    this.dateAvailable = newDateAvailable;
+    this._dateAvailable = newDateAvailable;
   }
   set hasAC(newHasAC) {
-    this.hasAC = newHasAC;
+    this._hasAC = newHasAC;
   }
-
   set favourite(newFavourite) {
-    this.favourite = newFavourite
+    this._favourite = newFavourite;
   }
-
+  set images(newImages) {
+    this._images = newImages;
+  }
 }
-
-

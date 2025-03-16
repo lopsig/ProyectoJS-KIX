@@ -24,9 +24,7 @@ let userInLocalStorage = allUsers.find(
   (user) => user.email === emailUserActual
 );
 console.log(userInLocalStorage);
-// console.log(userInLocalStorage.firstName);
-// userInLocalStorage.firstName = "Jonathan"
-// console.log(userInLocalStorage.firstName);
+
 
 //Validaciones y redireccion a "HOME"
 document
@@ -43,18 +41,34 @@ document
     let confirmPassword = document.getElementById("confirmPassword").value;
     let error = document.getElementById("error");
 
-    //Contraseña
 
+    // Validar contraseñas
     if (password !== confirmPassword) {
       error.textContent = "Las contraseñas no coinciden";
       error.style.color = "red";
-    } else if (password.length < 6) {
-      error.textContent = "Contraseña Inválida";
-    } else if (password === confirmPassword) {
+      return; // Detener la ejecución si las contraseñas no coinciden
+    }
+
+    // Validar longitud de la contraseña
+    if (password.length < 6) {
+      error.textContent = "La contraseña debe tener al menos 6 caracteres";
+      error.style.color = "red";
+      return; // Detener la ejecución si la contraseña es demasiado corta
+    }
+
+    // Validar nombre y apellido
+    if (firstName.length < 3 || lastName.length < 3) {
+      error.textContent = "Nombre y apellido deben tener al menos 3 caracteres";
+      error.style.color = "red";
+      return; // Detener la ejecución si el nombre o apellido son demasiado cortos
+    }
+
+    if (password === confirmPassword) {
       error.textContent = "Las contraseñas coinciden";
       error.style.color = "green";
-      window.location.href = "home_prueba.html";
+      window.location.href = "home.html";
     }
+
 
     if (userInLocalStorage && userInLocalStorage.email === emailUserActual) {
       // CAMBIAR DATOS
@@ -65,18 +79,6 @@ document
       userInLocalStorage.password = password;
 
       localStorage.setItem("usersList", JSON.stringify(allUsers));
-    }
-
-    if (firstName.length < 3) {
-      error.textContent =
-        "Nombre y apellido deben tener por lo menos 2 caracteres";
-      error.style.color = "red";
-    }
-
-    if (lastName.length < 3) {
-      error.textContent =
-        "Nombre y apellido deben tener por lo menos 2 caracteres";
-      error.style.color = "red";
     }
 
     // Actualizar userActual
@@ -126,4 +128,10 @@ passwordInput.addEventListener("input", function () {
   } else {
     special.classList.remove("valid");
   }
+});
+
+// Evento para el botón de "Log out"
+document.getElementById("logout-button").addEventListener("click", () => {
+  localStorage.removeItem("userActual"); // Eliminar el usuario de la sesión
+  window.location.href = "loggin.html"; // Redirigir a la página de login
 });

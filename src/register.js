@@ -38,6 +38,16 @@ document
       error.style.color = "red";
     } else if (password.length < 6) {
       error.textContent = "Contraseña Inválida";
+    } else if (fistName.length < 3) {
+      error.textContent =
+        "Nombre y apellido deben tener por lo menos 2 caracteres";
+      error.style.color = "red";
+      
+    } else if (lastName.length < 3) {
+       error.textContent =
+         "Nombre y apellido deben tener por lo menos 2 caracteres";
+       error.style.color = "red";
+
     } else if (password === confirmPassword) {
       error.textContent = "Las contraseñas coinciden";
       error.style.color = "green";
@@ -61,21 +71,21 @@ document
 
       register();
 
-      window.location.href = "index.html";
-      console.log("Redireccionar a HOME")
+      window.location.href = "loggin.html";
+      console.log("Redireccionar a HOME");
     }
 
-    if (fistName.length < 3) {
-      error.textContent =
-        "Nombre y apellido deben tener por lo menos 2 caracteres";
-      error.style.color = "red";
-    }
+    // if (fistName.length < 3) {
+    //   error.textContent =
+    //     "Nombre y apellido deben tener por lo menos 2 caracteres";
+    //   error.style.color = "red";
+    // }
 
-    if (lastName.length < 3) {
-      error.textContent =
-        "Nombre y apellido deben tener por lo menos 2 caracteres";
-      error.style.color = "red";
-    }
+    // if (lastName.length < 3) {
+    //   error.textContent =
+    //     "Nombre y apellido deben tener por lo menos 2 caracteres";
+    //   error.style.color = "red";
+    // }
   });
 
 //Alertas para validación de contraseña

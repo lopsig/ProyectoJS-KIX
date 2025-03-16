@@ -4,31 +4,62 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>New Flat</title>
+  <!-- <link rel="stylesheet" href="src/home.css"> -->
   <link rel="stylesheet" href="src/styleNewFlat.css">
 </head>
 
 <body>
-  <div class="container">
-    <h2>New Flat</h2>
-    <form id="newFlatForm">
-      <input type="text" id="city" placeholder="Ciudad" required autocomplete="off">
-      <input type="text" id="streetName" placeholder="Calle" required autocomplete="off">
-      <input type="number" id="streetNumber" placeholder="Número de Calle" required autocomplete="off">
-      <input type="number" id="areaSize" placeholder="Área" required autocomplete="off">
-      <input type="number" id="yearBuilt" placeholder="Año del Departamento" required autocomplete="off">
-      <input type="number" id="rentPrice" placeholder="Precio" required autocomplete="off">
-      <input type="date" id="dateAvailable" required>
-      <p>Tiene Aire Acondicionado?</p>
-      <input type="radio" id="yes" name="hasAC" value="true" required>
-      <label for="yes">Si</label>
-      <input type="radio" id="no" name="hasAC" value="false" required>
-      <label for="no">No</label> <br>
-      <button type="submit">Save</button>
-    </form>
-    <p id="error" class="error"></p>
+  
+  <header>
+    <div class="logo">
+      <span id="app-name"> RentEase</span>
+      <img src="assets/logo.png" alt="Logo de la compañía">
+    </div>
+    <div class="user-info">
+      <!-- <span id="user-greeting">Hello, </span> -->
+      <button id="logout-button">Log out</button>
+    </div>
+    <nav>
+      <ul>
+        <!-- <li><a href="home.html">Home</a></li> -->
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="allFlats.html">All Flats</a></li>
+        <li><a href="updateProfile.html">Update Profile</a></li>
+      </ul>
+    </nav>
+  </header>
+   
 
-  </div>
-  <script type="module" src="src/newFlat.js"></script>
+
+
+    <div class="container">
+      <h2>New Flat</h2>
+      <form id="newFlatForm">
+        <input type="text" id="city" placeholder="Ciudad" required autocomplete="off">
+        <input type="text" id="streetName" placeholder="Calle" required autocomplete="off">
+        <input type="number" id="streetNumber" placeholder="Número de Calle" required autocomplete="off">
+        <input type="number" id="areaSize" placeholder="Área" required autocomplete="off">
+        <input type="number" id="yearBuilt" placeholder="Año del Departamento" required autocomplete="off">
+        <input type="number" id="rentPrice" placeholder="Precio" required autocomplete="off">
+        <input type="date" id="dateAvailable" required>
+        <p>Tiene Aire Acondicionado?</p>
+        <div class="radio-group">
+          <input type="radio" id="yes" name="hasAC" value="true" required>
+          <label for="yes">Si</label>
+          <input type="radio" id="no" name="hasAC" value="false" required>
+          <label for="no">No</label> <br>
+        </div>
+
+        <!-- Botón para cargar imágenes -->
+        <label for="images">Cargar Imágenes:</label>
+        <input type="file" id="images" name="images" required multiple accept="image/*">
+
+        <button type="submit">Save</button>
+      </form>
+      <p id="error" class="error"></p>
+    </div>
+    <script type="module" src="src/newFlat.js"></script>
+
 </body>
 
 </html>
