@@ -2,13 +2,11 @@
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
-  background-color: #f0f4f8; /* Fondo gris claro */
-  color: #2c3e50; /* Texto azul oscuro */
+  background-color: #f0f4f8; 
+  color: #2c3e50; 
   line-height: 1.6;
-  padding-top: 80px; /* Espacio para el header fijo */
+  padding-top: 80px; 
 }
-
-
 
 /* Encabezado fijo */
 header {
@@ -16,14 +14,14 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #2c3e50; /* Azul marino */
+  background-color: #2c3e50; 
   color: white;
   padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 1000; /* Asegura que el header esté por encima del contenido */
+  z-index: 1000; 
 }
 
 header .logo {
@@ -39,7 +37,7 @@ header .logo img {
 header #app-name {
   font-size: 24px;
   font-weight: bold;
-  color: #3498db; /* Azul claro */
+  color: #3498db; 
 }
 
 header .user-info {
@@ -53,7 +51,7 @@ header #user-greeting {
 }
 
 header #logout-button {
-  background-color: #e74c3c; /* Rojo para el botón de logout */
+  background-color: #e74c3c; 
   color: white;
   border: none;
   padding: 8px 15px;
@@ -63,7 +61,7 @@ header #logout-button {
 }
 
 header #logout-button:hover {
-  background-color: #c0392b; /* Rojo oscuro al pasar el mouse */
+  background-color: #c0392b; 
 }
 
 header nav ul {
@@ -72,10 +70,15 @@ header nav ul {
   padding: 0;
   display: flex;
   flex-wrap: wrap; /* Permite que los enlaces se ajusten en pantallas pequeñas */
+  margin-right: 50px; /* Mueve la lista de navegación hacia la izquierda */
 }
 
 header nav ul li {
   margin-left: 20px;
+}
+
+header nav ul li:first-child {
+  margin-left: 0; /* Elimina el margen izquierdo del primer elemento (Home) */
 }
 
 header nav ul li a {
@@ -232,18 +235,19 @@ h2 {
     font-size: 10px;
   }
 }
+
 .error {
-    color: red;
-    font-size: 12px;
+  color: red;
+  font-size: 12px;
 }
 
-.validation-list{
+.validation-list {
   font-size: 12px;
   list-style: none;
   color: red;
 }
 
 .valid {
-    color: green;
-    font-weight: bold;
-  }
+  color: green;
+  font-weight: bold;
+}

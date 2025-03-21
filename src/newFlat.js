@@ -5,7 +5,7 @@ let images = [];
 
 // Evento para cargar imágenes
 document.getElementById("images").addEventListener("change", function (event) {
-  const files = event.target.files;
+  const files = event.target.files; // Obtiene los archivos seleccionados
 
   if (files.length > 0) {
     images = []; // Reiniciar el array de imágenes

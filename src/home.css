@@ -107,6 +107,18 @@ h1 {
   font-size: 32px;
 }
 
+
+
+/* Estilos para la imagen en la primera columna de la tabla de favoritos */
+#favorites-table td.image-cell img {
+  width: 700px; /* Ancho fijo */
+  height: 500px; /* Alto fijo */
+  object-fit: cover; /* Ajusta la imagen para cubrir el contenedor sin distorsionarla */
+  border-radius: 8px; /* Bordes redondeados */
+  display: block; /* Asegura que la imagen ocupe todo el espacio de la celda */
+  margin: 0 auto; /* Centra la imagen horizontalmente */
+}
+
 /* Tabla de flats favoritos */
 #favorites-table {
   width: 90%;

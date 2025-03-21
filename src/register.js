@@ -75,17 +75,6 @@ document
       console.log("Redireccionar a HOME");
     }
 
-    // if (fistName.length < 3) {
-    //   error.textContent =
-    //     "Nombre y apellido deben tener por lo menos 2 caracteres";
-    //   error.style.color = "red";
-    // }
-
-    // if (lastName.length < 3) {
-    //   error.textContent =
-    //     "Nombre y apellido deben tener por lo menos 2 caracteres";
-    //   error.style.color = "red";
-    // }
   });
 
 //Alertas para validación de contraseña

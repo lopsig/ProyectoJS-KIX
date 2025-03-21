@@ -2,11 +2,56 @@ let flats = JSON.parse(localStorage.getItem("flatsList")) || [];
 
 // Cargar el nombre del usuario desde el localStorage
 let user = JSON.parse(localStorage.getItem("userActual"));
-document.getElementById(
-  "user-greeting"
-).textContent = `Hola, ${user.firstName} ${user.lastName}`;
+
+document.getElementById("user-greeting").textContent = `Hola, ${user.firstName} ${user.lastName}`;
 
 // Función para renderizar la tabla
+// const renderTable = (data) => {
+//   const tbody = document.querySelector("#flats-table tbody");
+//   tbody.innerHTML = "";
+
+//   data.forEach((flat) => {
+//     const row = document.createElement("tr");
+
+//     row.innerHTML = `
+//       <td>${flat._city}</td>
+//       <td>${flat._streetName}</td>
+//       <td>${flat._streetNumber}</td>
+//       <td>${flat._areaSize}</td>
+//       <td>${flat._yearBuilt}</td>
+//       <td>$${flat._rentPrice}</td>
+//       <td>${flat._dateAvailable}</td>
+//       <td>${flat._hasAC ? "Sí" : "No"}</td>
+//       <td>
+//         <button class="favorite-btn" data-id="${flat._city}-${
+//       flat._streetName
+//     }">
+//           ${flat._favourite ? "⭐" : "✩"}
+//         </button>
+//       </td>
+//       <td>
+//         <button class="show-images-btn" data-id="${flat._city}-${
+//       flat._streetName
+//     }">
+//           Mostrar Imágenes
+//         </button>
+//       </td>
+//     `;
+
+//     tbody.appendChild(row);
+//   });
+
+//   // Agregar eventos a los botones de favoritos
+//   document.querySelectorAll(".favorite-btn").forEach((button) => {
+//     button.addEventListener("click", toggleFavorite);
+//   });
+
+//   // Agregar eventos a los botones de "Mostrar Imágenes"
+//   document.querySelectorAll(".show-images-btn").forEach((button) => {
+//     button.addEventListener("click", showImages);
+//   });
+// }
+
 const renderTable = (data) => {
   const tbody = document.querySelector("#flats-table tbody");
   tbody.innerHTML = ""; // Limpiar la tabla
@@ -14,30 +59,43 @@ const renderTable = (data) => {
   data.forEach((flat) => {
     const row = document.createElement("tr");
 
-    row.innerHTML = `
-      <td>${flat._city}</td>
-      <td>${flat._streetName}</td>
-      <td>${flat._streetNumber}</td>
-      <td>${flat._areaSize}</td>
-      <td>${flat._yearBuilt}</td>
-      <td>$${flat._rentPrice}</td>
-      <td>${flat._dateAvailable}</td>
-      <td>${flat._hasAC ? "Sí" : "No"}</td>
-      <td>
-        <button class="favorite-btn" data-id="${flat._city}-${
+    // Columna de la imagen
+    const imageCell = document.createElement("td");
+    imageCell.className = "image-cell";
+    const img = document.createElement("img");
+    img.src = flat._images[0]; // Mostrar la primera imagen del departamento
+    img.alt = `Imagen de ${flat._city}, ${flat._streetName}`;
+    img.style.cursor = "pointer"; // Cambiar el cursor al pasar sobre la imagen
+    img.addEventListener("click", () =>
+      showImages({
+        target: { getAttribute: () => `${flat._city}-${flat._streetName}` },
+      })
+    );
+    imageCell.appendChild(img);
+    row.appendChild(imageCell);
+
+    // Columna de la información
+    const infoCell = document.createElement("td");
+    infoCell.className = "info-cell";
+    infoCell.innerHTML = `
+      <p><strong>Ciudad:</strong> ${flat._city}</p>
+      <p><strong>Calle:</strong> ${flat._streetName}</p>
+      <p><strong>Número de calle:</strong> ${flat._streetNumber}</p>
+      <p><strong>Área:</strong> ${flat._areaSize} m²</p>
+      <p><strong>Año de construcción:</strong> ${flat._yearBuilt}</p>
+      <p><strong>Precio de alquiler:</strong> $${flat._rentPrice}</p>
+      <p><strong>Fecha disponible:</strong> ${flat._dateAvailable}</p>
+      <p><strong>Tiene AC:</strong> ${flat._hasAC ? "Sí" : "No"}</p>
+      <button class="favorite-btn" data-id="${flat._city}-${flat._streetName}">
+        ${flat._favourite ? "⭐ Favorito" : "✩ Marcar como favorito"}
+      </button>
+      <button class="show-images-btn" data-id="${flat._city}-${
       flat._streetName
     }">
-          ${flat._favourite ? "⭐" : "✩"}
-        </button>
-      </td>
-      <td>
-        <button class="show-images-btn" data-id="${flat._city}-${
-      flat._streetName
-    }">
-          Mostrar Imágenes
-        </button>
-      </td>
+        Mostrar Imágenes
+      </button>
     `;
+    row.appendChild(infoCell);
 
     tbody.appendChild(row);
   });
@@ -51,7 +109,8 @@ const renderTable = (data) => {
   document.querySelectorAll(".show-images-btn").forEach((button) => {
     button.addEventListener("click", showImages);
   });
-}
+};
+
 
 // Función para alternar favoritos
 const toggleFavorite = (event) => {
@@ -114,11 +173,9 @@ window.addEventListener("click", (event) => {
 const filterFlats=() =>{
   const city = document.getElementById("city").value.toLowerCase();
   const minPrice = parseFloat(document.getElementById("min-price").value) || 0;
-  const maxPrice =
-    parseFloat(document.getElementById("max-price").value) || Infinity;
+  const maxPrice = parseFloat(document.getElementById("max-price").value) || Infinity;
   const minArea = parseFloat(document.getElementById("min-area").value) || 0;
-  const maxArea =
-    parseFloat(document.getElementById("max-area").value) || Infinity;
+  const maxArea = parseFloat(document.getElementById("max-area").value) || Infinity;
 
   const filtered = flats.filter((flat) => {
     return (

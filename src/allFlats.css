@@ -1,3 +1,4 @@
+
 /* Estilos generales */
 body {
   margin: 0;
@@ -170,7 +171,19 @@ h1 {
   background-color: #27ae60; /* Verde oscuro al pasar el mouse */
 }
 
-/* Tabla de flats */
+
+/* Estilos para la imagen en la primera columna */
+#flats-table td.image-cell img {
+  width: 700px; /* Ancho fijo */
+  height: 500px; /* Alto fijo */
+  object-fit: cover; /* Ajusta la imagen para cubrir el contenedor sin distorsionarla */
+  border-radius: 8px; /* Bordes redondeados */
+  display: block; /* Asegura que la imagen ocupe todo el espacio de la celda */
+  margin: 0 auto; /* Centra la imagen horizontalmente */
+}
+
+
+
 #flats-table {
   width: 90%;
   margin: 20px auto;
@@ -185,16 +198,19 @@ h1 {
 #flats-table td {
   padding: 12px;
   text-align: center;
+  
 }
 
 #flats-table th {
   background-color: #3498db; /* Azul claro */
   color: white;
   font-weight: bold;
+  
 }
 
 #flats-table tr:nth-child(even) {
   background-color: #f8f9fa; /* Gris muy claro */
+  
 }
 
 #flats-table tr:hover {
@@ -383,3 +399,4 @@ h1 {
     font-size: 20px;
   }
 }
+
